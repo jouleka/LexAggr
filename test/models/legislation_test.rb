@@ -45,4 +45,40 @@ class LegislationTest < ActiveSupport::TestCase
     legislation = Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/reg/2016/679", title: "GDPR")
     assert_respond_to legislation, :legislation_versions
   end
+
+  test "in_force scope returns only in_force legislations" do
+    in_force = Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/reg/2016/679", title: "GDPR", status: "in_force")
+    Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/dir/2006/112", title: "VAT Directive", status: "repealed")
+
+    results = Legislation.in_force
+    assert_includes results, in_force
+    assert_equal 1, results.count
+  end
+
+  test "by_type scope filters by legislation_type" do
+    regulation = Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/reg/2016/679", title: "GDPR", legislation_type: "regulation")
+    Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/dir/2006/112", title: "VAT Directive", legislation_type: "directive")
+
+    results = Legislation.by_type("regulation")
+    assert_includes results, regulation
+    assert_equal 1, results.count
+  end
+
+  test "by_year scope filters by year" do
+    leg_2016 = Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/reg/2016/679", title: "GDPR", year: 2016)
+    Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/dir/2006/112", title: "VAT Directive", year: 2006)
+
+    results = Legislation.by_year(2016)
+    assert_includes results, leg_2016
+    assert_equal 1, results.count
+  end
+
+  test "search_full_text scope finds legislation by title fragment" do
+    gdpr = Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/reg/2016/679", title: "General Data Protection Regulation")
+    Legislation.create!(jurisdiction: @jurisdiction, frbr_uri: "/eli/dir/2006/112", title: "Value Added Tax Directive")
+
+    results = Legislation.search_full_text("Protection")
+    assert_includes results, gdpr
+    assert_not_includes results, Legislation.find_by(frbr_uri: "/eli/dir/2006/112")
+  end
 end

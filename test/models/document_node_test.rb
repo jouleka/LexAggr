@@ -32,4 +32,41 @@ class DocumentNodeTest < ActiveSupport::TestCase
     results = DocumentNode.ancestors_of("act_1.part_2.art_5")
     assert_includes results, parent
   end
+
+  test "direct_children_of returns only direct children, not grandchildren" do
+    parent = DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2", element_type: "part", position: 1, depth: 1)
+    child = DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2.art_5", element_type: "article", parent: parent, position: 1, depth: 2)
+    grandchild = DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2.art_5.para_1", element_type: "paragraph", parent: child, position: 1, depth: 3)
+
+    results = DocumentNode.direct_children_of("act_1.part_2")
+    assert_includes results, child
+    assert_not_includes results, grandchild
+  end
+
+  test "roots scope returns only nodes without parent" do
+    root = DocumentNode.create!(legislation_version: @version, tree_path: "act_1", element_type: "part", parent: nil, position: 1, depth: 0)
+    DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2", element_type: "chapter", parent: root, position: 1, depth: 1)
+
+    results = DocumentNode.roots
+    assert_includes results, root
+    assert_equal 1, results.count
+  end
+
+  test "subtree_of includes self unlike descendants_of" do
+    parent = DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2", element_type: "part", position: 1, depth: 1)
+    child = DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2.art_5", element_type: "article", parent: parent, position: 1, depth: 2)
+
+    results = DocumentNode.subtree_of("act_1.part_2")
+    assert_includes results, parent
+    assert_includes results, child
+  end
+
+  test "descendants_of excludes self" do
+    parent = DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2", element_type: "part", position: 1, depth: 1)
+    child = DocumentNode.create!(legislation_version: @version, tree_path: "act_1.part_2.art_5", element_type: "article", parent: parent, position: 1, depth: 2)
+
+    results = DocumentNode.descendants_of("act_1.part_2")
+    assert_not_includes results, parent
+    assert_includes results, child
+  end
 end

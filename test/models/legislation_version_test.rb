@@ -43,4 +43,20 @@ class LegislationVersionTest < ActiveSupport::TestCase
     results = LegislationVersion.current
     assert_includes results, current
   end
+
+  test "in_language scope filters versions by language" do
+    en_version = LegislationVersion.create!(legislation: @legislation, version_uri: "/eli/reg/2016/679/en", language: "en", valid_from: Date.new(2018, 5, 25))
+    LegislationVersion.create!(legislation: @legislation, version_uri: "/eli/reg/2016/679/fr", language: "fr", valid_from: Date.new(2018, 5, 25))
+
+    results = LegislationVersion.in_language("en")
+    assert_includes results, en_version
+    assert_equal 1, results.count
+  end
+
+  test "in_force_on scope includes versions with NULL valid_from" do
+    null_from = LegislationVersion.create!(legislation: @legislation, version_uri: "/eli/reg/2016/679/en/v_null", language: "en", valid_from: nil, valid_to: nil)
+
+    results = LegislationVersion.in_force_on(Date.new(2020, 6, 15))
+    assert_includes results, null_from
+  end
 end
