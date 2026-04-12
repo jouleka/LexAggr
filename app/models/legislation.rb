@@ -16,8 +16,13 @@ class Legislation < ApplicationRecord
       }
     }
 
+  LEGISLATION_TYPES = %w[regulation directive decision delegated_directive delegated_regulation implementing_regulation act other].freeze
+  STATUSES = %w[in_force repealed pending].freeze
+
   validates :frbr_uri, presence: true, uniqueness: true
   validates :title, presence: true
+  validates :legislation_type, inclusion: { in: LEGISLATION_TYPES }, allow_nil: true
+  validates :status, inclusion: { in: STATUSES }, allow_nil: true
 
   scope :in_force, -> { where(status: "in_force") }
   scope :by_type, ->(type) { where(legislation_type: type) }

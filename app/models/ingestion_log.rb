@@ -1,7 +1,10 @@
 class IngestionLog < ApplicationRecord
   belongs_to :jurisdiction
 
+  STATUSES = %w[running completed failed].freeze
+
   validates :jurisdiction, presence: true
+  validates :status, inclusion: { in: STATUSES }
 
   scope :recent, -> { order(created_at: :desc) }
 
