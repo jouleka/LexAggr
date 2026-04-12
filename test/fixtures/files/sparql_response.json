@@ -1,0 +1,20 @@
+{
+  "results": {
+    "bindings": [
+      {
+        "celex": { "type": "literal", "value": "32016R0679" },
+        "title": { "type": "literal", "value": "Regulation (EU) 2016/679 of the European Parliament and of the Council" },
+        "date": { "type": "literal", "value": "2016-04-27", "datatype": "http://www.w3.org/2001/XMLSchema#date" },
+        "work": { "type": "uri", "value": "http://publications.europa.eu/resource/cellar/fake-uuid-1" },
+        "restype": { "type": "uri", "value": "http://publications.europa.eu/resource/authority/resource-type/REG" }
+      },
+      {
+        "celex": { "type": "literal", "value": "32024R1689" },
+        "title": { "type": "literal", "value": "Regulation (EU) 2024/1689 of the European Parliament and of the Council" },
+        "date": { "type": "literal", "value": "2024-06-13", "datatype": "http://www.w3.org/2001/XMLSchema#date" },
+        "work": { "type": "uri", "value": "http://publications.europa.eu/resource/cellar/fake-uuid-2" },
+        "restype": { "type": "uri", "value": "http://publications.europa.eu/resource/authority/resource-type/REG" }
+      }
+    ]
+  }
+}
