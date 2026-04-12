@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_12_000005) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_12_000006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_catalog.plpgsql"
@@ -35,6 +35,20 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000005) do
     t.index ["parent_id"], name: "index_document_nodes_on_parent_id"
     t.index ["searchable"], name: "index_document_nodes_on_searchable", using: :gin
     t.index ["tree_path"], name: "index_document_nodes_on_tree_path", using: :gist
+  end
+
+  create_table "ingestion_logs", force: :cascade do |t|
+    t.bigint "jurisdiction_id", null: false
+    t.string "source_name"
+    t.string "status"
+    t.integer "documents_processed", default: 0
+    t.string "last_etag"
+    t.datetime "last_modified_at"
+    t.text "error_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jurisdiction_id", "source_name", "created_at"], name: "idx_on_jurisdiction_id_source_name_created_at_da3acd94a6"
+    t.index ["jurisdiction_id"], name: "index_ingestion_logs_on_jurisdiction_id"
   end
 
   create_table "jurisdictions", force: :cascade do |t|
@@ -85,6 +99,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000005) do
 
   add_foreign_key "document_nodes", "document_nodes", column: "parent_id"
   add_foreign_key "document_nodes", "legislation_versions"
+  add_foreign_key "ingestion_logs", "jurisdictions"
   add_foreign_key "legislation_versions", "legislations"
   add_foreign_key "legislations", "jurisdictions"
 end
