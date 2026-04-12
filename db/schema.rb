@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_12_000002) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_12_000003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_catalog.plpgsql"
@@ -25,4 +25,25 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000002) do
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_jurisdictions_on_code", unique: true
   end
+
+  create_table "legislations", force: :cascade do |t|
+    t.bigint "jurisdiction_id", null: false
+    t.string "frbr_uri", null: false
+    t.string "celex_number"
+    t.string "eli_uri"
+    t.string "title", null: false
+    t.string "legislation_type"
+    t.integer "year"
+    t.string "status"
+    t.string "source_identifier"
+    t.string "content_hash"
+    t.tsvector "searchable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["frbr_uri"], name: "index_legislations_on_frbr_uri", unique: true
+    t.index ["jurisdiction_id"], name: "index_legislations_on_jurisdiction_id"
+    t.index ["searchable"], name: "index_legislations_on_searchable", using: :gin
+  end
+
+  add_foreign_key "legislations", "jurisdictions"
 end
