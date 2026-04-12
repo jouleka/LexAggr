@@ -34,12 +34,15 @@ class Ingestion::EurlexSparqlServiceTest < ActiveSupport::TestCase
     assert_empty results
   end
 
-  test "fetch_document retrieves XML content" do
-    cellar_url = "https://eur-lex.europa.eu/legal-content/EN/TXT/XML/?uri=CELEX:32016R0679"
+  test "fetch_document retrieves content via CELLAR with redirect" do
     sample_xml = '<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"><act name="regulation"></act></akomaNtoso>'
 
-    stub_request(:get, cellar_url)
-      .to_return(status: 200, body: sample_xml, headers: { "Content-Type" => "application/xml" })
+    # CELLAR returns 303 -> manifestation URI -> 200 with content
+    stub_request(:get, /publications\.europa\.eu\/resource\/celex\/32016R0679/)
+      .to_return(status: 303, headers: { "Location" => "https://publications.europa.eu/resource/cellar/abc123/DOC_1" })
+
+    stub_request(:get, /publications\.europa\.eu\/resource\/cellar\/abc123\/DOC_1/)
+      .to_return(status: 200, body: sample_xml, headers: { "Content-Type" => "application/xhtml+xml" })
 
     result = @service.fetch_document(ref: { celex_number: "32016R0679" })
     assert_equal sample_xml, result[:raw_xml]
