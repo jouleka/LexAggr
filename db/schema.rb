@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_12_000006) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_12_000010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_catalog.plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000006) do
     t.tsvector "searchable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["heading"], name: "index_document_nodes_on_heading_trgm", opclass: :gin_trgm_ops, using: :gin
     t.index ["legislation_version_id", "eid"], name: "index_document_nodes_on_legislation_version_id_and_eid"
     t.index ["legislation_version_id"], name: "index_document_nodes_on_legislation_version_id"
     t.index ["parent_id"], name: "index_document_nodes_on_parent_id"
@@ -40,7 +41,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000006) do
   create_table "ingestion_logs", force: :cascade do |t|
     t.bigint "jurisdiction_id", null: false
     t.string "source_name"
-    t.string "status"
+    t.string "status", default: "running", null: false
     t.integer "documents_processed", default: 0
     t.string "last_etag"
     t.datetime "last_modified_at"
@@ -61,6 +62,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000006) do
     t.index ["code"], name: "index_jurisdictions_on_code", unique: true
   end
 
+  create_table "legislation_version_contents", force: :cascade do |t|
+    t.bigint "legislation_version_id", null: false
+    t.text "raw_xml"
+    t.text "raw_html"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["legislation_version_id"], name: "index_legislation_version_contents_on_legislation_version_id", unique: true
+  end
+
   create_table "legislation_versions", force: :cascade do |t|
     t.bigint "legislation_id", null: false
     t.string "version_uri", null: false
@@ -69,8 +79,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000006) do
     t.date "valid_to"
     t.date "publication_date"
     t.string "version_type"
-    t.text "raw_xml"
-    t.text "raw_html"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["legislation_id"], name: "index_legislation_versions_on_legislation_id"
@@ -92,14 +100,19 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_12_000006) do
     t.tsvector "searchable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["celex_number"], name: "index_legislations_on_celex_number"
+    t.index ["eli_uri"], name: "index_legislations_on_eli_uri"
     t.index ["frbr_uri"], name: "index_legislations_on_frbr_uri", unique: true
     t.index ["jurisdiction_id"], name: "index_legislations_on_jurisdiction_id"
     t.index ["searchable"], name: "index_legislations_on_searchable", using: :gin
+    t.index ["status"], name: "index_legislations_on_status"
+    t.index ["title"], name: "index_legislations_on_title_trgm", opclass: :gin_trgm_ops, using: :gin
   end
 
   add_foreign_key "document_nodes", "document_nodes", column: "parent_id"
   add_foreign_key "document_nodes", "legislation_versions"
   add_foreign_key "ingestion_logs", "jurisdictions"
+  add_foreign_key "legislation_version_contents", "legislation_versions"
   add_foreign_key "legislation_versions", "legislations"
   add_foreign_key "legislations", "jurisdictions"
 end

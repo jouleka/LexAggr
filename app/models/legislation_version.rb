@@ -1,5 +1,6 @@
 class LegislationVersion < ApplicationRecord
   belongs_to :legislation
+  has_one :content, class_name: "LegislationVersionContent", dependent: :destroy
   has_many :document_nodes, dependent: :destroy
 
   validates :version_uri, presence: true, uniqueness: true
