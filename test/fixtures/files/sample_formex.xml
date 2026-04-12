@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONSLEG.ACT>
+  <TITLE>
+    <TI>
+      <P>Council Regulation (EC) No 1/2003</P>
+    </TI>
+  </TITLE>
+  <CONS.ANNEX>
+    <CONS.DOC>
+      <BIB.INSTANCE>
+        <DATE ISO="20030116">16 January 2003</DATE>
+        <NO.CELEX>32003R0001</NO.CELEX>
+      </BIB.INSTANCE>
+      <ENACTING.TERMS>
+        <DIVISION TYPE="CHAPTER" ID="chp_1">
+          <TITLE>
+            <TI><P>CHAPTER I</P></TI>
+            <STI><P>PRINCIPLES</P></STI>
+          </TITLE>
+          <ARTICLE ID="art_1">
+            <TI><P>Article 1</P></TI>
+            <STI><P>Subject matter</P></STI>
+            <PARAG ID="art_1_par_1">
+              <ALINEA>
+                <P>This Regulation establishes the rules.</P>
+              </ALINEA>
+            </PARAG>
+          </ARTICLE>
+        </DIVISION>
+      </ENACTING.TERMS>
+    </CONS.DOC>
+  </CONS.ANNEX>
+</CONSLEG.ACT>
