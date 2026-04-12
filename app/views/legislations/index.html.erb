@@ -1,0 +1,4 @@
+<h1>Legislation</h1>
+<% @legislations.each do |leg| %>
+  <p><%= link_to leg.title, legislation_path(leg) %></p>
+<% end %>
