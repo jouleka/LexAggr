@@ -1,4 +1,36 @@
 <h1>Legislation</h1>
-<% @legislations.each do |leg| %>
-  <p><%= link_to leg.title, legislation_path(leg) %></p>
-<% end %>
+
+<div class="filters">
+  <%= form_tag legislations_path, method: :get do %>
+    <%= select_tag :jurisdiction, options_from_collection_for_select(Jurisdiction.all, :code, :name, params[:jurisdiction]), include_blank: "All Jurisdictions" %>
+    <%= select_tag :type, options_for_select([["Regulation", "regulation"], ["Directive", "directive"], ["Decision", "decision"]], params[:type]), include_blank: "All Types" %>
+    <%= select_tag :status, options_for_select([["In Force", "in_force"], ["Repealed", "repealed"], ["Pending", "pending"]], params[:status]), include_blank: "All Statuses" %>
+    <%= submit_tag "Filter", class: "btn" %>
+  <% end %>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Title</th><th>Jurisdiction</th><th>Type</th><th>Year</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <% @legislations.each do |leg| %>
+        <tr>
+          <td><%= link_to leg.title.truncate(80), legislation_path(leg) %></td>
+          <td><%= leg.jurisdiction.code.upcase %></td>
+          <td><span class="badge badge-blue"><%= leg.legislation_type %></span></td>
+          <td><%= leg.year %></td>
+          <td>
+            <span class="badge <%= leg.status == 'in_force' ? 'badge-green' : 'badge-red' %>">
+              <%= leg.status&.humanize %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if @legislations.empty? %>
+    <p style="padding: 1rem; text-align: center; color: #718096;">No legislation found. Run an ingestion job to populate data.</p>
+  <% end %>
+</div>

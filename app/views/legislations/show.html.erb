@@ -1,1 +1,44 @@
 <h1><%= @legislation.title %></h1>
+
+<div class="card">
+  <h2>Metadata</h2>
+  <table>
+    <tr><th style="width:150px">FRBR URI</th><td><%= @legislation.frbr_uri %></td></tr>
+    <tr><th>CELEX</th><td><%= @legislation.celex_number %></td></tr>
+    <tr><th>ELI URI</th><td><%= @legislation.eli_uri %></td></tr>
+    <tr><th>Jurisdiction</th><td><%= @legislation.jurisdiction.name %></td></tr>
+    <tr><th>Type</th><td><span class="badge badge-blue"><%= @legislation.legislation_type %></span></td></tr>
+    <tr><th>Year</th><td><%= @legislation.year %></td></tr>
+    <tr><th>Status</th><td><span class="badge <%= @legislation.status == 'in_force' ? 'badge-green' : 'badge-red' %>"><%= @legislation.status&.humanize %></span></td></tr>
+  </table>
+</div>
+
+<% if @versions.any? %>
+  <div class="card">
+    <h2>Versions (<%= @versions.count %>)</h2>
+    <table>
+      <thead>
+        <tr><th>Language</th><th>Valid From</th><th>Valid To</th><th>Type</th></tr>
+      </thead>
+      <tbody>
+        <% @versions.each do |v| %>
+          <tr>
+            <td><%= v.language %></td>
+            <td><%= v.valid_from %></td>
+            <td><%= v.valid_to || "Current" %></td>
+            <td><%= v.version_type %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% if @document_tree.any? %>
+  <div class="card">
+    <h2>Document Structure</h2>
+    <% @document_tree.each do |node| %>
+      <%= render partial: "legislations/document_node", locals: { node: node, level: 0 } %>
+    <% end %>
+  </div>
+<% end %>

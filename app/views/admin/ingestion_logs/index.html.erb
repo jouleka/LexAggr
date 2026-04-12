@@ -1,1 +1,29 @@
 <h1>Ingestion Logs</h1>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Time</th><th>Jurisdiction</th><th>Source</th><th>Status</th><th>Documents</th><th>ETag</th><th>Error</th></tr>
+    </thead>
+    <tbody>
+      <% @logs.each do |log| %>
+        <tr>
+          <td><%= log.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= log.jurisdiction.code.upcase %></td>
+          <td><%= log.source_name %></td>
+          <td>
+            <span class="badge <%= log.status == 'completed' ? 'badge-green' : log.status == 'failed' ? 'badge-red' : 'badge-yellow' %>">
+              <%= log.status %>
+            </span>
+          </td>
+          <td><%= log.documents_processed %></td>
+          <td><%= log.last_etag&.truncate(20) %></td>
+          <td style="color: #e53e3e;"><%= log.error_message&.truncate(50) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if @logs.empty? %>
+    <p style="padding: 1rem; text-align: center; color: #718096;">No ingestion logs yet.</p>
+  <% end %>
+</div>

@@ -1,2 +1,63 @@
 <h1>Dashboard</h1>
-<p>Legislations: <%= @stats[:total_legislations] %></p>
+
+<div class="stats">
+  <div class="stat-card">
+    <div class="number"><%= @stats[:total_legislations] %></div>
+    <div class="label">Total Legislation</div>
+  </div>
+  <div class="stat-card">
+    <div class="number"><%= @stats[:jurisdictions_active] %></div>
+    <div class="label">Active Jurisdictions</div>
+  </div>
+  <div class="stat-card">
+    <div class="number"><%= @stats[:last_sync]&.strftime("%b %d, %H:%M") || "Never" %></div>
+    <div class="label">Last Sync</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Jurisdictions</h2>
+  <table>
+    <thead>
+      <tr><th>Code</th><th>Name</th><th>Type</th><th>Legislation Count</th></tr>
+    </thead>
+    <tbody>
+      <% @jurisdictions.each do |j| %>
+        <tr>
+          <td><strong><%= j.code.upcase %></strong></td>
+          <td><%= j.name %></td>
+          <td><span class="badge badge-blue"><%= j.jurisdiction_type %></span></td>
+          <td><%= j.legislations.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Recent Ingestion Activity</h2>
+  <% if @recent_logs.any? %>
+    <table>
+      <thead>
+        <tr><th>Source</th><th>Jurisdiction</th><th>Status</th><th>Documents</th><th>Time</th></tr>
+      </thead>
+      <tbody>
+        <% @recent_logs.each do |log| %>
+          <tr>
+            <td><%= log.source_name %></td>
+            <td><%= log.jurisdiction.name %></td>
+            <td>
+              <span class="badge <%= log.status == 'completed' ? 'badge-green' : log.status == 'failed' ? 'badge-red' : 'badge-yellow' %>">
+                <%= log.status %>
+              </span>
+            </td>
+            <td><%= log.documents_processed %></td>
+            <td><%= log.created_at.strftime("%b %d, %H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p style="padding: 1rem; text-align: center; color: #718096;">No ingestion activity yet. Run a sync to get started.</p>
+  <% end %>
+</div>

@@ -1,0 +1,12 @@
+<div class="tree-node <%= 'tree-node-root' if level == 0 %>">
+  <strong><%= node.element_type.capitalize %><%= " #{node.num}" if node.num.present? %></strong>
+  <% if node.heading.present? %>
+    &mdash; <%= node.heading %>
+  <% end %>
+  <% if node.content_text.present? %>
+    <p style="margin-top: 0.25rem; color: #4a5568;"><%= node.content_text.truncate(200) %></p>
+  <% end %>
+  <% node.children.order(:position).each do |child| %>
+    <%= render partial: "legislations/document_node", locals: { node: child, level: level + 1 } %>
+  <% end %>
+</div>
