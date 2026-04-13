@@ -9,8 +9,9 @@ class LegislationsController < ApplicationController
 
   def show
     @legislation = Legislation.find(params[:id])
-    @versions = @legislation.legislation_versions.order(valid_from: :desc)
+    @versions = @legislation.legislation_versions.includes(:content).order(valid_from: :desc)
     @current_version = @versions.current.first || @versions.first
     @document_tree = @current_version&.document_nodes&.roots&.order(:position) || []
+    @raw_content = @current_version&.content&.raw_xml
   end
 end
