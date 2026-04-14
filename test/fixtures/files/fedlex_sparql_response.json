@@ -1,0 +1,16 @@
+{
+  "results": {
+    "bindings": [
+      {
+        "uri": { "type": "uri", "value": "https://fedlex.data.admin.ch/eli/cc/2020/624" },
+        "title": { "type": "literal", "value": "Federal Act on Data Protection" },
+        "date": { "type": "literal", "value": "2020-09-25", "datatype": "http://www.w3.org/2001/XMLSchema#date" }
+      },
+      {
+        "uri": { "type": "uri", "value": "https://fedlex.data.admin.ch/eli/cc/2023/682" },
+        "title": { "type": "literal", "value": "Federal Act on Information Security" },
+        "date": { "type": "literal", "value": "2023-12-18", "datatype": "http://www.w3.org/2001/XMLSchema#date" }
+      }
+    ]
+  }
+}

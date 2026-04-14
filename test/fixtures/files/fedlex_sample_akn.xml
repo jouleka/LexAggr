@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="federal_act">
+    <meta>
+      <identification source="#fedlex">
+        <FRBRWork>
+          <FRBRthis value="/eli/cc/2020/624"/>
+          <FRBRuri value="/eli/cc/2020/624"/>
+          <FRBRdate date="2020-09-25" name="enactment"/>
+          <FRBRauthor href="#federal_assembly"/>
+        </FRBRWork>
+      </identification>
+    </meta>
+    <body>
+      <section eId="sec_1">
+        <num>1</num>
+        <heading>General Provisions</heading>
+        <article eId="art_1">
+          <num>Art. 1</num>
+          <heading>Purpose</heading>
+          <content>
+            <p>This Act aims to protect the personality and fundamental rights of natural persons whose personal data is processed.</p>
+          </content>
+        </article>
+      </section>
+    </body>
+  </act>
+</akomaNtoso>
