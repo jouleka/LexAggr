@@ -5,7 +5,15 @@ module Ingestion
       "gb" => "Ingestion::UkLegislationService",
       "fi" => "Ingestion::FinlexService",
       "pl" => "Ingestion::PolandEliService",
-      "es" => "Ingestion::SpainBoeService"
+      "es" => "Ingestion::SpainBoeService",
+      "ch" => "Ingestion::SwitzerlandFedlexService",
+      "fr" => "Ingestion::FranceDilaService",
+      "it" => "Ingestion::ItalyNormattivaService",
+      "de" => "Ingestion::GermanyGesetzeService",
+      "at" => "Ingestion::AustriaRisService",
+      "se" => "Ingestion::SwedenRiksdagenService",
+      "dk" => "Ingestion::DenmarkRetsinformationService",
+      "no" => "Ingestion::NorwayLovdataService"
     }.freeze
 
     def self.for(jurisdiction_code)

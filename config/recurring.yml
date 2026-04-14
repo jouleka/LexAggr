@@ -25,6 +25,38 @@ production:
     class: JurisdictionSyncJob
     args: ["es"]
     schedule: "every day at 5am"
+  switzerland_sync:
+    class: JurisdictionSyncJob
+    args: ["ch"]
+    schedule: "every 6 hours"
+  france_sync:
+    class: JurisdictionSyncJob
+    args: ["fr"]
+    schedule: "every day at 2am"
+  italy_sync:
+    class: JurisdictionSyncJob
+    args: ["it"]
+    schedule: "every day at 3:30am"
+  germany_sync:
+    class: JurisdictionSyncJob
+    args: ["de"]
+    schedule: "every day at 1am"
+  austria_sync:
+    class: JurisdictionSyncJob
+    args: ["at"]
+    schedule: "every day at 4:30am"
+  sweden_sync:
+    class: JurisdictionSyncJob
+    args: ["se"]
+    schedule: "every day at 5:30am"
+  denmark_sync:
+    class: JurisdictionSyncJob
+    args: ["dk"]
+    schedule: "every day at 6am"
+  norway_sync:
+    class: JurisdictionSyncJob
+    args: ["no"]
+    schedule: "every day at 6:30am"
 
 development:
   alert_digest:
@@ -53,3 +85,35 @@ development:
     class: JurisdictionSyncJob
     args: ["es"]
     schedule: "every day at 5am"
+  switzerland_sync:
+    class: JurisdictionSyncJob
+    args: ["ch"]
+    schedule: "every 6 hours"
+  france_sync:
+    class: JurisdictionSyncJob
+    args: ["fr"]
+    schedule: "every day at 2am"
+  italy_sync:
+    class: JurisdictionSyncJob
+    args: ["it"]
+    schedule: "every day at 3:30am"
+  germany_sync:
+    class: JurisdictionSyncJob
+    args: ["de"]
+    schedule: "every day at 1am"
+  austria_sync:
+    class: JurisdictionSyncJob
+    args: ["at"]
+    schedule: "every day at 4:30am"
+  sweden_sync:
+    class: JurisdictionSyncJob
+    args: ["se"]
+    schedule: "every day at 5:30am"
+  denmark_sync:
+    class: JurisdictionSyncJob
+    args: ["dk"]
+    schedule: "every day at 6am"
+  norway_sync:
+    class: JurisdictionSyncJob
+    args: ["no"]
+    schedule: "every day at 6:30am"

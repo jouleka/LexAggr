@@ -38,12 +38,50 @@ class Ingestion::IngestionServiceFactoryTest < ActiveSupport::TestCase
     assert_kind_of Ingestion::SpainBoeService, service
   end
 
-  test "registered_codes includes all 5 jurisdictions" do
+  test "returns SwitzerlandFedlexService for ch" do
+    service = Ingestion::IngestionServiceFactory.for("ch")
+    assert_kind_of Ingestion::SwitzerlandFedlexService, service
+  end
+
+  test "returns FranceDilaService for fr" do
+    service = Ingestion::IngestionServiceFactory.for("fr")
+    assert_kind_of Ingestion::FranceDilaService, service
+  end
+
+  test "returns ItalyNormattivaService for it" do
+    service = Ingestion::IngestionServiceFactory.for("it")
+    assert_kind_of Ingestion::ItalyNormattivaService, service
+  end
+
+  test "returns GermanyGesetzeService for de" do
+    service = Ingestion::IngestionServiceFactory.for("de")
+    assert_kind_of Ingestion::GermanyGesetzeService, service
+  end
+
+  test "returns AustriaRisService for at" do
+    service = Ingestion::IngestionServiceFactory.for("at")
+    assert_kind_of Ingestion::AustriaRisService, service
+  end
+
+  test "returns SwedenRiksdagenService for se" do
+    service = Ingestion::IngestionServiceFactory.for("se")
+    assert_kind_of Ingestion::SwedenRiksdagenService, service
+  end
+
+  test "returns DenmarkRetsinformationService for dk" do
+    service = Ingestion::IngestionServiceFactory.for("dk")
+    assert_kind_of Ingestion::DenmarkRetsinformationService, service
+  end
+
+  test "returns NorwayLovdataService for no" do
+    service = Ingestion::IngestionServiceFactory.for("no")
+    assert_kind_of Ingestion::NorwayLovdataService, service
+  end
+
+  test "registered_codes includes all 13 jurisdictions" do
     codes = Ingestion::IngestionServiceFactory.registered_codes
-    assert_includes codes, "eu"
-    assert_includes codes, "gb"
-    assert_includes codes, "fi"
-    assert_includes codes, "pl"
-    assert_includes codes, "es"
+    %w[eu gb fi pl es ch fr it de at se dk no].each do |code|
+      assert_includes codes, code
+    end
   end
 end
