@@ -1,0 +1,35 @@
+[
+  {
+    "id": 240001,
+    "title": "Lov om databeskyttelse",
+    "shortTitle": "Databeskyttelsesloven",
+    "documentType": "LOV",
+    "documentNumber": "LOV nr 502 af 23/05/2026",
+    "publicationDate": "2026-05-23",
+    "effectiveDate": "2026-06-01",
+    "status": "gaeldende",
+    "ministry": "Justitsministeriet"
+  },
+  {
+    "id": 240002,
+    "title": "Bekendtgorelse om cybersikkerhed",
+    "shortTitle": "Cybersikkerhedsbekendtgorelsen",
+    "documentType": "BEK",
+    "documentNumber": "BEK nr 1024 af 15/03/2026",
+    "publicationDate": "2026-03-15",
+    "effectiveDate": "2026-04-01",
+    "status": "gaeldende",
+    "ministry": "Forsvarsministeriet"
+  },
+  {
+    "id": 240003,
+    "title": "Cirkulaere om miljorapportering",
+    "shortTitle": "Miljorapporteringscirkulaeret",
+    "documentType": "CIR",
+    "documentNumber": "CIR nr 88 af 10/02/2026",
+    "publicationDate": "2026-02-10",
+    "effectiveDate": "2026-03-01",
+    "status": "historisk",
+    "ministry": "Miljoministeriet"
+  }
+]
