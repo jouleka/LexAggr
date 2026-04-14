@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dokumente builddate="20260401120000" doknr="BJNR000010949">
+  <norm builddate="20260401120000" doknr="BJNR000010949BJNE000100000">
+    <metadaten>
+      <jurabk>GG</jurabk>
+      <amtabk>GG</amtabk>
+      <ausfertigung-datum manuell="ja">1949-05-23</ausfertigung-datum>
+      <langue>Grundgesetz fur die Bundesrepublik Deutschland</langue>
+    </metadaten>
+    <textdaten>
+      <text format="XML">
+        <Content>
+          <P>Die Wurde des Menschen ist unantastbar.</P>
+        </Content>
+      </text>
+    </textdaten>
+  </norm>
+</dokumente>
