@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="statute">
+    <meta>
+      <identification source="#source">
+        <FRBRWork>
+          <FRBRuri value="/akn/fi/act/statute/2026/100"/>
+          <FRBRdate date="2026-01-15" name="enactment"/>
+          <FRBRcountry value="fi"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRlanguage language="fin"/>
+        </FRBRExpression>
+      </identification>
+    </meta>
+    <preface>
+      <longTitle>
+        <p><docTitle>Laki tietosuojasta 100/2026</docTitle></p>
+      </longTitle>
+    </preface>
+    <body>
+      <chapter eId="chp_1">
+        <num>1 luku</num>
+        <heading>Yleiset saannokset</heading>
+        <section eId="sec_1">
+          <num>1 pykala</num>
+          <heading>Soveltamisala</heading>
+          <content>
+            <p>Tassa laissa saadetaan tietosuojasta.</p>
+          </content>
+        </section>
+      </chapter>
+    </body>
+  </act>
+</akomaNtoso>

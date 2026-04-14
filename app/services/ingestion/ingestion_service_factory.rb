@@ -3,6 +3,7 @@ module Ingestion
     STRATEGIES = {
       "eu" => "Ingestion::EurlexSparqlService",
       "uk" => "Ingestion::UkLegislationService",
+      "fi" => "Ingestion::FinlexService",
       "pl" => "Ingestion::PolandEliService"
     }.freeze
 
