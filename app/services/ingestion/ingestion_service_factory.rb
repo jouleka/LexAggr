@@ -2,7 +2,8 @@ module Ingestion
   class IngestionServiceFactory
     STRATEGIES = {
       "eu" => "Ingestion::EurlexSparqlService",
-      "uk" => "Ingestion::UkLegislationService"
+      "uk" => "Ingestion::UkLegislationService",
+      "pl" => "Ingestion::PolandEliService"
     }.freeze
 
     def self.for(jurisdiction_code)

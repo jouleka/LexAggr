@@ -1,0 +1,50 @@
+{
+  "count": 3,
+  "items": [
+    {
+      "ELI": "DU/2026/100",
+      "publisher": "DU",
+      "year": 2026,
+      "pos": 100,
+      "title": "Ustawa z dnia 15 marca 2026 r. o ochronie danych osobowych",
+      "type": "Ustawa",
+      "status": "obowiazujacy",
+      "inForce": "IN_FORCE",
+      "announcementDate": "2026-03-20",
+      "promulgation": "2026-04-01",
+      "changeDate": "2026-04-01T12:00:00",
+      "textHTML": true,
+      "textPDF": true
+    },
+    {
+      "ELI": "DU/2026/101",
+      "publisher": "DU",
+      "year": 2026,
+      "pos": 101,
+      "title": "Rozporzadzenie Ministra Cyfryzacji z dnia 10 marca 2026 r.",
+      "type": "Rozporzadzenie",
+      "status": "obowiazujacy",
+      "inForce": "IN_FORCE",
+      "announcementDate": "2026-03-15",
+      "promulgation": "2026-03-25",
+      "changeDate": "2026-03-25T08:30:00",
+      "textHTML": true,
+      "textPDF": true
+    },
+    {
+      "ELI": "DU/2026/50",
+      "publisher": "DU",
+      "year": 2026,
+      "pos": 50,
+      "title": "Ustawa z dnia 20 stycznia 2026 r. - Prawo energetyczne",
+      "type": "Ustawa",
+      "status": "uchylony",
+      "inForce": "NOT_IN_FORCE",
+      "announcementDate": "2026-01-25",
+      "promulgation": "2026-02-01",
+      "changeDate": "2026-03-01T10:00:00",
+      "textHTML": true,
+      "textPDF": false
+    }
+  ]
+}
