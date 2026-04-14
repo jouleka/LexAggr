@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <status>OK</status>
+  <sumario>
+    <diario>
+      <numero>85</numero>
+      <sumario_diario>
+        <url_pdf>https://www.boe.es/boe/dias/2026/04/01/pdfs/BOE-S-2026-85.pdf</url_pdf>
+      </sumario_diario>
+      <seccion>
+        <codigo>1</codigo>
+        <nombre>I. Disposiciones generales</nombre>
+        <departamento>
+          <codigo>9540</codigo>
+          <nombre>Jefatura del Estado</nombre>
+          <item>
+            <titulo>Ley 5/2026, de 28 de marzo, de proteccion de datos personales.</titulo>
+            <identificador>BOE-A-2026-5000</identificador>
+            <url_pdf>https://www.boe.es/boe/dias/2026/04/01/pdfs/BOE-A-2026-5000.pdf</url_pdf>
+            <pagina_inicial>1</pagina_inicial>
+            <pagina_final>25</pagina_final>
+          </item>
+          <item>
+            <titulo>Real Decreto 200/2026, de 25 de marzo, por el que se regula la ciberseguridad.</titulo>
+            <identificador>BOE-A-2026-5001</identificador>
+            <url_pdf>https://www.boe.es/boe/dias/2026/04/01/pdfs/BOE-A-2026-5001.pdf</url_pdf>
+            <pagina_inicial>26</pagina_inicial>
+            <pagina_final>40</pagina_final>
+          </item>
+        </departamento>
+      </seccion>
+    </diario>
+  </sumario>
+</response>

@@ -4,7 +4,8 @@ module Ingestion
       "eu" => "Ingestion::EurlexSparqlService",
       "uk" => "Ingestion::UkLegislationService",
       "fi" => "Ingestion::FinlexService",
-      "pl" => "Ingestion::PolandEliService"
+      "pl" => "Ingestion::PolandEliService",
+      "es" => "Ingestion::SpainBoeService"
     }.freeze
 
     def self.for(jurisdiction_code)
