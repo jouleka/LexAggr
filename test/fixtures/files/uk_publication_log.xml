@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:pbl="http://www.legislation.gov.uk/namespaces/publication-log"
+      xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata"
+      xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title>New Legislation - Publication Log</title>
+  <updated>2026-04-01T12:00:00Z</updated>
+  <entry>
+    <title>Data Protection (Amendment) Act 2026</title>
+    <dc:identifier>http://www.legislation.gov.uk/id/ukpga/2026/5</dc:identifier>
+    <updated>2026-04-01T10:00:00Z</updated>
+    <ukm:DocumentMainType Value="UnitedKingdomPublicGeneralAct"/>
+    <ukm:Year>2026</ukm:Year>
+    <ukm:Number>5</ukm:Number>
+    <pbl:ContentType>legislation</pbl:ContentType>
+    <pbl:Event>published</pbl:Event>
+    <pbl:New>true</pbl:New>
+  </entry>
+  <entry>
+    <title>The Environmental Protection (Microplastics) Regulations 2026</title>
+    <dc:identifier>http://www.legislation.gov.uk/id/uksi/2026/200</dc:identifier>
+    <updated>2026-03-15T09:00:00Z</updated>
+    <ukm:DocumentMainType Value="UnitedKingdomStatutoryInstrument"/>
+    <ukm:Year>2026</ukm:Year>
+    <ukm:Number>200</ukm:Number>
+    <pbl:ContentType>legislation</pbl:ContentType>
+    <pbl:Event>published</pbl:Event>
+    <pbl:New>true</pbl:New>
+  </entry>
+</feed>
