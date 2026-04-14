@@ -6,6 +6,22 @@ production:
     class: JurisdictionSyncJob
     args: ["eu"]
     schedule: "every 6 hours"
+  uk_sync:
+    class: JurisdictionSyncJob
+    args: ["gb"]
+    schedule: "every 1 hour"
+  finland_sync:
+    class: JurisdictionSyncJob
+    args: ["fi"]
+    schedule: "every day at 3am"
+  poland_sync:
+    class: JurisdictionSyncJob
+    args: ["pl"]
+    schedule: "every day at 4am"
+  spain_sync:
+    class: JurisdictionSyncJob
+    args: ["es"]
+    schedule: "every day at 5am"
 
 development:
   eurlex_rss_sync:
@@ -15,3 +31,19 @@ development:
     class: JurisdictionSyncJob
     args: ["eu"]
     schedule: "every 6 hours"
+  uk_sync:
+    class: JurisdictionSyncJob
+    args: ["gb"]
+    schedule: "every 1 hour"
+  finland_sync:
+    class: JurisdictionSyncJob
+    args: ["fi"]
+    schedule: "every day at 3am"
+  poland_sync:
+    class: JurisdictionSyncJob
+    args: ["pl"]
+    schedule: "every day at 4am"
+  spain_sync:
+    class: JurisdictionSyncJob
+    args: ["es"]
+    schedule: "every day at 5am"

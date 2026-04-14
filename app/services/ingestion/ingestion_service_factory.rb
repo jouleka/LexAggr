@@ -2,7 +2,7 @@ module Ingestion
   class IngestionServiceFactory
     STRATEGIES = {
       "eu" => "Ingestion::EurlexSparqlService",
-      "uk" => "Ingestion::UkLegislationService",
+      "gb" => "Ingestion::UkLegislationService",
       "fi" => "Ingestion::FinlexService",
       "pl" => "Ingestion::PolandEliService",
       "es" => "Ingestion::SpainBoeService"
