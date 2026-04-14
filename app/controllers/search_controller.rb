@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  allow_unauthenticated_access
+
   def index
     @query = params[:q]
     @results = if @query.present?

@@ -1,0 +1,18 @@
+<h1>Update your password</h1>
+<div class="card" style="max-width: 400px;">
+  <% if flash[:alert] %>
+    <div style="color: #e53e3e; margin-bottom: 1rem;"><p><%= flash[:alert] %></p></div>
+  <% end %>
+
+  <%= form_with url: password_path(params[:token]), method: :put do |form| %>
+    <div style="margin-bottom: 1rem;">
+      <%= form.label :password, "New Password", style: "display: block; margin-bottom: 0.25rem; font-weight: 600;" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password", maxlength: 72, style: "width: 100%; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;" %>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <%= form.label :password_confirmation, "Confirm Password", style: "display: block; margin-bottom: 0.25rem; font-weight: 600;" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", maxlength: 72, style: "width: 100%; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 4px;" %>
+    </div>
+    <%= form.submit "Save", class: "btn", style: "width: 100%;" %>
+  <% end %>
+</div>

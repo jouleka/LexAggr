@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  allow_unauthenticated_access
+
   def index
     @jurisdictions = Jurisdiction.all
     @legislation_count = Legislation.count

@@ -1,4 +1,6 @@
 class LegislationsController < ApplicationController
+  allow_unauthenticated_access
+
   def index
     @legislations = Legislation.includes(:jurisdiction).order(created_at: :desc)
     @legislations = @legislations.where(jurisdiction: Jurisdiction.find_by(code: params[:jurisdiction])) if params[:jurisdiction].present?
