@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_14_093917) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_14_100330) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_catalog.plpgsql"
@@ -60,6 +60,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_093917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_jurisdictions_on_code", unique: true
+  end
+
+  create_table "legislation_references", force: :cascade do |t|
+    t.bigint "source_legislation_id", null: false
+    t.bigint "target_legislation_id", null: false
+    t.string "reference_type", null: false
+    t.text "reference_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_legislation_id", "target_legislation_id", "reference_type"], name: "idx_legislation_refs_unique", unique: true
+    t.index ["source_legislation_id"], name: "index_legislation_references_on_source_legislation_id"
+    t.index ["target_legislation_id"], name: "index_legislation_references_on_target_legislation_id"
   end
 
   create_table "legislation_version_contents", force: :cascade do |t|
@@ -157,6 +169,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_093917) do
   add_foreign_key "document_nodes", "document_nodes", column: "parent_id"
   add_foreign_key "document_nodes", "legislation_versions"
   add_foreign_key "ingestion_logs", "jurisdictions"
+  add_foreign_key "legislation_references", "legislations", column: "source_legislation_id"
+  add_foreign_key "legislation_references", "legislations", column: "target_legislation_id"
   add_foreign_key "legislation_version_contents", "legislation_versions"
   add_foreign_key "legislation_versions", "legislations"
   add_foreign_key "legislations", "jurisdictions"

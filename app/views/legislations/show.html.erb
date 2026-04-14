@@ -51,6 +51,44 @@
   </div>
 <% end %>
 
+<% if @outgoing_refs.any? || @incoming_refs.any? %>
+  <div class="card">
+    <h2>Cross-References</h2>
+
+    <% if @outgoing_refs.any? %>
+      <h3 style="margin-top: 1rem; font-size: 0.95rem;">This legislation references:</h3>
+      <table>
+        <thead><tr><th>Relationship</th><th>Legislation</th><th>Jurisdiction</th></tr></thead>
+        <tbody>
+          <% @outgoing_refs.each do |ref| %>
+            <tr>
+              <td><span class="badge badge-blue"><%= ref.reference_type %></span></td>
+              <td><%= link_to ref.target_legislation.title.truncate(70), legislation_path(ref.target_legislation) %></td>
+              <td><%= ref.target_legislation.jurisdiction.code.upcase %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+    <% if @incoming_refs.any? %>
+      <h3 style="margin-top: 1rem; font-size: 0.95rem;">Referenced by:</h3>
+      <table>
+        <thead><tr><th>Relationship</th><th>Legislation</th><th>Jurisdiction</th></tr></thead>
+        <tbody>
+          <% @incoming_refs.each do |ref| %>
+            <tr>
+              <td><span class="badge badge-yellow"><%= ref.reference_type %></span></td>
+              <td><%= link_to ref.source_legislation.title.truncate(70), legislation_path(ref.source_legislation) %></td>
+              <td><%= ref.source_legislation.jurisdiction.code.upcase %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+<% end %>
+
 <% if @raw_content.present? %>
   <div class="card">
     <h2>Full Text</h2>

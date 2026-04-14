@@ -15,5 +15,7 @@ class LegislationsController < ApplicationController
     @current_version = @versions.current.first || @versions.first
     @document_tree = @current_version&.document_nodes&.roots&.order(:position) || []
     @raw_content = @current_version&.content&.raw_xml
+    @outgoing_refs = @legislation.outgoing_references.includes(:target_legislation).order(:reference_type)
+    @incoming_refs = @legislation.incoming_references.includes(:source_legislation).order(:reference_type)
   end
 end

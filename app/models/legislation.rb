@@ -4,6 +4,10 @@ class Legislation < ApplicationRecord
   belongs_to :jurisdiction
   has_many :legislation_versions, dependent: :destroy
   has_many :watchlist_items, dependent: :destroy
+  has_many :outgoing_references, class_name: "LegislationReference", foreign_key: :source_legislation_id, dependent: :destroy
+  has_many :incoming_references, class_name: "LegislationReference", foreign_key: :target_legislation_id, dependent: :destroy
+  has_many :referenced_legislations, through: :outgoing_references, source: :target_legislation
+  has_many :referencing_legislations, through: :incoming_references, source: :source_legislation
 
   pg_search_scope :search_full_text,
     against: :title,
