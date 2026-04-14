@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<laws>
+  <law>
+    <id>LOV-2026-01-15-5</id>
+    <title>Lov om personopplysninger (personopplysningsloven)</title>
+    <shortTitle>Personopplysningsloven</shortTitle>
+    <type>lov</type>
+    <date>2026-01-15</date>
+    <ministry>Justis- og beredskapsdepartementet</ministry>
+    <status>gjeldende</status>
+    <lastModified>2026-03-20</lastModified>
+  </law>
+  <law>
+    <id>FOR-2026-02-10-120</id>
+    <title>Forskrift om informasjonssikkerhet</title>
+    <shortTitle>Informasjonssikkerhetsforskriften</shortTitle>
+    <type>forskrift</type>
+    <date>2026-02-10</date>
+    <ministry>Digitaliserings- og forvaltningsdepartementet</ministry>
+    <status>gjeldende</status>
+    <lastModified>2026-03-15</lastModified>
+  </law>
+  <law>
+    <id>LOV-2026-03-01-22</id>
+    <title>Lov om miljorapportering</title>
+    <shortTitle>Miljorapporteringsloven</shortTitle>
+    <type>lov</type>
+    <date>2026-03-01</date>
+    <ministry>Klima- og miljodepartementet</ministry>
+    <status>opphevet</status>
+    <lastModified>2026-04-01</lastModified>
+  </law>
+</laws>
