@@ -1,4 +1,7 @@
 production:
+  alert_digest:
+    class: AlertDigestJob
+    schedule: "every day at 7am"
   eurlex_rss_sync:
     class: EurlexRssSyncJob
     schedule: "every 2 hours"
@@ -24,6 +27,9 @@ production:
     schedule: "every day at 5am"
 
 development:
+  alert_digest:
+    class: AlertDigestJob
+    schedule: "every day at 7am"
   eurlex_rss_sync:
     class: EurlexRssSyncJob
     schedule: "every 2 hours"

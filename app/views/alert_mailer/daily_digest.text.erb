@@ -1,0 +1,19 @@
+LexAggr Watchlist Digest
+========================
+
+Hello <%= @user.email_address %>,
+
+<%= @changes.length %> piece<%= @changes.length == 1 ? "" : "s" %> of legislation in your watchlist ha<%= @changes.length == 1 ? "s" : "ve" %> been updated.
+
+<% @grouped_changes.each do |jurisdiction_name, legislations| %>
+<%= jurisdiction_name %>
+<%= "-" * jurisdiction_name.length %>
+<% legislations.each do |legislation| %>
+* <%= legislation.title %><% if legislation.legislation_type.present? %> [<%= legislation.legislation_type.humanize %>]<% end %>
+  Updated: <%= legislation.updated_at.strftime("%B %d, %Y") %>
+  View: <%= legislation_url(legislation) %>
+<% end %>
+<% end %>
+
+---
+Update your alert preferences at: <%= edit_alert_preferences_url %>
