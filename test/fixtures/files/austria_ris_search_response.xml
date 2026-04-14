@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OgdSearchResult>
+  <OgdDocumentResults>
+    <Hits>
+      <Seitengroesse>25</Seitengroesse>
+      <Seitennummer>1</Seitennummer>
+      <Treffer>2</Treffer>
+    </Hits>
+    <OgdDocumentReference>
+      <Data>
+        <Metadaten>
+          <Technpisc>
+            <Dokumentnummer>NOR40263001</Dokumentnummer>
+          </Technpisc>
+          <Allgemein>
+            <Kurztitel>Datenschutzgesetz 2026</Kurztitel>
+            <Dokumenttyp>BG</Dokumenttyp>
+            <ArtikelParagraphAnlworting>Bundesgesetz</ArtikelParagraphAnlworting>
+            <Inkrafttretedatum>2026-01-01</Inkrafttretedatum>
+            <Ausserkrafttretedatum>2099-12-31</Ausserkrafttretedatum>
+          </Allgemein>
+        </Metadaten>
+      </Data>
+    </OgdDocumentReference>
+    <OgdDocumentReference>
+      <Data>
+        <Metadaten>
+          <Technpisc>
+            <Dokumentnummer>NOR40263002</Dokumentnummer>
+          </Technpisc>
+          <Allgemein>
+            <Kurztitel>Verordnung zur Cybersicherheit 2026</Kurztitel>
+            <Dokumenttyp>V</Dokumenttyp>
+            <ArtikelParagraphAnlworting>Verordnung</ArtikelParagraphAnlworting>
+            <Inkrafttretedatum>2026-02-15</Inkrafttretedatum>
+            <Ausserkrafttretedatum>2099-12-31</Ausserkrafttretedatum>
+          </Allgemein>
+        </Metadaten>
+      </Data>
+    </OgdDocumentReference>
+  </OgdDocumentResults>
+</OgdSearchResult>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OgdSearchResult>
+  <OgdDocumentResults>
+    <OgdDocumentReference>
+      <Data>
+        <Metadaten>
+          <Technpisc>
+            <Dokumentnummer>NOR40263001</Dokumentnummer>
+          </Technpisc>
+          <Allgemein>
+            <Kurztitel>Datenschutzgesetz 2026</Kurztitel>
+          </Allgemein>
+        </Metadaten>
+        <Dokumentinhalt>
+          <ContentReference>
+            <ContentType>MainDocument</ContentType>
+            <Urls>
+              <ContentUrl>
+                <Url>https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40263001/NOR40263001.html</Url>
+              </ContentUrl>
+            </Urls>
+          </ContentReference>
+        </Dokumentinhalt>
+      </Data>
+    </OgdDocumentReference>
+  </OgdDocumentResults>
+</OgdSearchResult>
