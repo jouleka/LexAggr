@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :legislations, only: [:index, :show]
   get "search", to: "search#index"
 
+  get "legislations/:id/export/csv", to: "exports#legislation_csv", as: :export_legislation_csv
+  get "legislations/:id/export/pdf", to: "exports#legislation_pdf", as: :export_legislation_pdf
+  get "export/search.csv", to: "exports#search_csv", as: :export_search_csv
+
   resources :watchlists, only: [:index, :show, :destroy] do
     resources :watchlist_items, only: [:destroy], module: :watchlists
   end

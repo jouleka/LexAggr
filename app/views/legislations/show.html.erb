@@ -1,5 +1,10 @@
 <h1><%= @legislation.title %></h1>
 
+<div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+  <%= link_to "Export CSV", export_legislation_csv_path(@legislation), class: "btn", style: "background: #38a169; font-size: 0.8rem;" %>
+  <%= link_to "Export PDF", export_legislation_pdf_path(@legislation), class: "btn", style: "background: #d69e2e; font-size: 0.8rem;" %>
+</div>
+
 <% if authenticated? %>
   <% if Current.user.watchlists.joins(:watchlist_items).where(watchlist_items: { legislation_id: @legislation.id }).exists? %>
     <%= button_to "Unwatch", unwatch_legislation_path(@legislation), method: :delete, class: "btn", style: "background: #e53e3e;" %>

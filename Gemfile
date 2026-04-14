@@ -49,6 +49,11 @@ gem "sparql-client"
 # Search
 gem "pg_search"
 
+# CSV/PDF export
+gem "csv"
+gem "prawn"
+gem "prawn-table"
+
 # Job monitoring
 gem "mission_control-jobs"
 
@@ -61,6 +66,11 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Linting
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-minitest", require: false
 end
 
 group :development do

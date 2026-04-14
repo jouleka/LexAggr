@@ -97,10 +97,15 @@
   <div>
     <div class="card">
       <% if @query.present? || @jurisdiction_filter.present? || @type_filter.present? %>
-        <h2>
-          <% if @query.present? %>Results for "<%= @query %>"<% else %>All Legislation<% end %>
-          (<%= @total %>)
-        </h2>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2>
+            <% if @query.present? %>Results for "<%= @query %>"<% else %>All Legislation<% end %>
+            (<%= @total %>)
+          </h2>
+          <% if @results.any? %>
+            <%= link_to "Export Results as CSV", export_search_csv_path(q: @query, jurisdiction: @jurisdiction_filter, type: @type_filter), class: "btn", style: "background: #38a169; font-size: 0.8rem;" %>
+          <% end %>
+        </div>
       <% end %>
 
       <% if @results.any? %>
