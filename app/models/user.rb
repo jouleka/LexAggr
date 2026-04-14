@@ -9,4 +9,12 @@ class User < ApplicationRecord
   scope :wants_alerts, -> { where(alert_email_enabled: true).where.not(alert_frequency: "none") }
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  before_create :generate_api_token
+
+  private
+
+  def generate_api_token
+    self.api_token = SecureRandom.hex(32)
+  end
 end
