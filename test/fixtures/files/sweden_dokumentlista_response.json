@@ -1,0 +1,37 @@
+{
+  "dokumentlista": {
+    "@traffar": "3",
+    "dokument": [
+      {
+        "dok_id": "SFS-2026-100",
+        "titel": "Lag (2026:100) om dataskydd",
+        "rm": "2025/26",
+        "typ": "sfs",
+        "datum": "2026-01-15",
+        "undertitel": "Dataskyddslag",
+        "publicerad": "2026-01-20",
+        "dokument_url_text": "https://data.riksdagen.se/dokument/SFS-2026-100.text"
+      },
+      {
+        "dok_id": "SFS-2026-200",
+        "titel": "Forordning (2026:200) om cybersakerhet",
+        "rm": "2025/26",
+        "typ": "sfs",
+        "datum": "2026-02-10",
+        "undertitel": "Cybersakerhetsforordning",
+        "publicerad": "2026-02-15",
+        "dokument_url_text": "https://data.riksdagen.se/dokument/SFS-2026-200.text"
+      },
+      {
+        "dok_id": "PROP-2026-50",
+        "titel": "Proposition 2025/26:50 om miljolagstiftning",
+        "rm": "2025/26",
+        "typ": "prop",
+        "datum": "2026-03-01",
+        "undertitel": "Miljolagstiftning",
+        "publicerad": "2026-03-05",
+        "dokument_url_text": "https://data.riksdagen.se/dokument/PROP-2026-50.text"
+      }
+    ]
+  }
+}
