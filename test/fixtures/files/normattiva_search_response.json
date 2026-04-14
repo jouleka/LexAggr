@@ -1,0 +1,29 @@
+{
+  "totalCount": 3,
+  "data": [
+    {
+      "id": "26G00050",
+      "tipoAtto": "LEGGE",
+      "dataAtto": "2026-03-28",
+      "numAtto": "45",
+      "titolo": "Legge 28 marzo 2026, n. 45 - Disposizioni in materia di sicurezza informatica",
+      "stato": "vigente"
+    },
+    {
+      "id": "26G00048",
+      "tipoAtto": "DECRETO LEGISLATIVO",
+      "dataAtto": "2026-03-15",
+      "numAtto": "38",
+      "titolo": "Decreto legislativo 15 marzo 2026, n. 38 - Attuazione della direttiva UE 2024/1689",
+      "stato": "vigente"
+    },
+    {
+      "id": "26G00030",
+      "tipoAtto": "DECRETO DEL PRESIDENTE DELLA REPUBBLICA",
+      "dataAtto": "2026-02-20",
+      "numAtto": "22",
+      "titolo": "Decreto del Presidente della Repubblica 20 febbraio 2026, n. 22",
+      "stato": "abrogato"
+    }
+  ]
+}
