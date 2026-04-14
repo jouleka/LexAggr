@@ -1,0 +1,33 @@
+<h1>Alert Preferences</h1>
+
+<div class="card" style="max-width: 500px;">
+  <%= form_with model: @user, url: alert_preferences_path, method: :patch do |f| %>
+    <% if @user.errors.any? %>
+      <div style="color: #e53e3e; margin-bottom: 1rem;">
+        <% @user.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div style="margin-bottom: 1.5rem;">
+      <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email Digest Frequency</label>
+      <% User::ALERT_FREQUENCIES.each do |freq| %>
+        <label style="display: block; margin-bottom: 0.25rem;">
+          <%= f.radio_button :alert_frequency, freq %>
+          <%= freq.capitalize %>
+        </label>
+      <% end %>
+    </div>
+
+    <div style="margin-bottom: 1.5rem;">
+      <label style="display: block;">
+        <%= f.check_box :alert_email_enabled %>
+        <strong>Enable email alerts</strong>
+      </label>
+      <p style="color: #718096; font-size: 0.875rem;">When enabled, you'll receive digest emails about changes to your watched legislation.</p>
+    </div>
+
+    <%= f.submit "Save Preferences", class: "btn" %>
+  <% end %>
+</div>

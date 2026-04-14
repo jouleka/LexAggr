@@ -51,6 +51,8 @@
       <%= link_to "Legislation", legislations_path %>
       <%= link_to "Search", search_path %>
       <% if authenticated? %>
+        <%= link_to "Watchlists", watchlists_path %>
+        <%= link_to "Settings", edit_alert_preferences_path %>
         <%= link_to "Ingestion Logs", admin_ingestion_logs_path %>
         <%= link_to "Jobs", "/jobs" %>
         <%= button_to "Sign Out", session_path, method: :delete, style: "background: none; border: none; color: white; cursor: pointer; font-weight: 500;" %>

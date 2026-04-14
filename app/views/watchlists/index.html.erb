@@ -1,0 +1,26 @@
+<h1>My Watchlists</h1>
+
+<% if @watchlists.any? %>
+  <% @watchlists.each do |watchlist| %>
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2><%= link_to watchlist.name, watchlist_path(watchlist) %></h2>
+        <span class="badge badge-blue"><%= watchlist.watchlist_items.count %> items</span>
+      </div>
+      <% watchlist.watchlist_items.limit(5).each do |item| %>
+        <p>
+          <% if item.legislation %>
+            <%= link_to item.legislation.title.truncate(80), legislation_path(item.legislation) %>
+            <span class="badge badge-green"><%= item.legislation.jurisdiction.code.upcase %></span>
+          <% elsif item.jurisdiction %>
+            All <%= item.legislation_type %> from <%= item.jurisdiction.name %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="card">
+    <p style="text-align: center; color: #718096;">No watchlists yet. Browse <%= link_to "legislation", legislations_path %> and click "Watch" to start tracking.</p>
+  </div>
+<% end %>

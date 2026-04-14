@@ -1,5 +1,13 @@
 <h1><%= @legislation.title %></h1>
 
+<% if authenticated? %>
+  <% if Current.user.watchlists.joins(:watchlist_items).where(watchlist_items: { legislation_id: @legislation.id }).exists? %>
+    <%= button_to "Unwatch", unwatch_legislation_path(@legislation), method: :delete, class: "btn", style: "background: #e53e3e;" %>
+  <% else %>
+    <%= button_to "Watch", watch_legislation_path(@legislation), class: "btn" %>
+  <% end %>
+<% end %>
+
 <div class="card">
   <h2>Metadata</h2>
   <table>

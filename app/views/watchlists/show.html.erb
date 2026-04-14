@@ -1,0 +1,32 @@
+<h1><%= @watchlist.name %></h1>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Legislation</th><th>Jurisdiction</th><th>Type</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td>
+            <% if item.legislation %>
+              <%= link_to item.legislation.title.truncate(80), legislation_path(item.legislation) %>
+            <% else %>
+              All <%= item.legislation_type %> from <%= item.jurisdiction&.name %>
+            <% end %>
+          </td>
+          <td><%= item.legislation&.jurisdiction&.code&.upcase || item.jurisdiction&.code&.upcase %></td>
+          <td><span class="badge badge-blue"><%= item.legislation&.legislation_type || item.legislation_type %></span></td>
+          <td>
+            <%= button_to "Remove", watchlist_watchlist_item_path(@watchlist, item), method: :delete, class: "btn", style: "background: #e53e3e; font-size: 0.75rem; padding: 0.25rem 0.5rem;" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if @items.empty? %>
+    <p style="padding: 1rem; text-align: center; color: #718096;">No items in this watchlist.</p>
+  <% end %>
+</div>
+
+<%= link_to "Back to Watchlists", watchlists_path %>

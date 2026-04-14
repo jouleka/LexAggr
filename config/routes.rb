@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   resources :legislations, only: [:index, :show]
   get "search", to: "search#index"
 
+  resources :watchlists, only: [:index, :show, :destroy] do
+    resources :watchlist_items, only: [:destroy], module: :watchlists
+  end
+  post "legislations/:id/watch", to: "watchlists#watch", as: :watch_legislation
+  delete "legislations/:id/unwatch", to: "watchlists#unwatch", as: :unwatch_legislation
+
+  resource :alert_preferences, only: [:edit, :update]
+
   namespace :admin do
     resources :ingestion_logs, only: [:index]
   end

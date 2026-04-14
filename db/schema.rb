@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_14_090751) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_14_091502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_catalog.plpgsql"
@@ -123,7 +123,33 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_090751) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "alert_frequency", default: "daily", null: false
+    t.boolean "alert_email_enabled", default: true, null: false
+    t.datetime "last_digest_sent_at"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
+  create_table "watchlist_items", force: :cascade do |t|
+    t.bigint "watchlist_id", null: false
+    t.bigint "legislation_id"
+    t.bigint "jurisdiction_id"
+    t.string "legislation_type"
+    t.string "item_type", default: "specific_legislation", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jurisdiction_id"], name: "index_watchlist_items_on_jurisdiction_id"
+    t.index ["legislation_id"], name: "index_watchlist_items_on_legislation_id"
+    t.index ["watchlist_id", "legislation_id"], name: "idx_watchlist_items_unique_legislation", unique: true, where: "(legislation_id IS NOT NULL)"
+    t.index ["watchlist_id"], name: "index_watchlist_items_on_watchlist_id"
+  end
+
+  create_table "watchlists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", default: "My Watchlist", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_watchlists_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_watchlists_on_user_id"
   end
 
   add_foreign_key "document_nodes", "document_nodes", column: "parent_id"
@@ -133,4 +159,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_090751) do
   add_foreign_key "legislation_versions", "legislations"
   add_foreign_key "legislations", "jurisdictions"
   add_foreign_key "sessions", "users"
+  add_foreign_key "watchlist_items", "jurisdictions"
+  add_foreign_key "watchlist_items", "legislations"
+  add_foreign_key "watchlist_items", "watchlists"
+  add_foreign_key "watchlists", "users"
 end

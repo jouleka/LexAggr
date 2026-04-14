@@ -3,6 +3,7 @@ class Legislation < ApplicationRecord
 
   belongs_to :jurisdiction
   has_many :legislation_versions, dependent: :destroy
+  has_many :watchlist_items, dependent: :destroy
 
   pg_search_scope :search_full_text,
     against: :title,
