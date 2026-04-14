@@ -7,7 +7,6 @@ class ParseLegislationDocumentJob < ApplicationJob
     service = Ingestion::IngestionServiceFactory.for(jurisdiction_code)
 
     result = service.fetch_document(ref: doc_ref)
-    return if result.empty?
 
     legislation = Legislation.find_or_initialize_by(frbr_uri: doc_ref[:frbr_uri])
     legislation.assign_attributes(
@@ -15,14 +14,15 @@ class ParseLegislationDocumentJob < ApplicationJob
       title: doc_ref[:title],
       legislation_type: doc_ref[:legislation_type],
       celex_number: result[:celex_number] || doc_ref[:celex_number],
-      year: extract_year(doc_ref[:date]),
-      status: "in_force",
-      source_identifier: doc_ref[:celex_number]
+      year: doc_ref[:year] || extract_year(doc_ref[:date]),
+      status: doc_ref[:status] || "in_force",
+      source_identifier: doc_ref[:source_identifier] || doc_ref[:celex_number]
     )
 
-    return if legislation.persisted? && legislation.content_hash == result[:content_hash]
+    new_hash = result[:content_hash] || compute_metadata_hash(doc_ref)
+    return if legislation.persisted? && legislation.content_hash == new_hash
 
-    legislation.content_hash = result[:content_hash]
+    legislation.content_hash = new_hash
     legislation.save!
 
     version = legislation.legislation_versions.find_or_initialize_by(
@@ -35,17 +35,22 @@ class ParseLegislationDocumentJob < ApplicationJob
     )
     version.save!
 
-    # Store raw content in the separate content table
-    content = version.content || version.build_content
-    content.update!(raw_xml: result[:raw_xml])
-
-    build_document_tree(version, result[:raw_xml]) if result[:raw_xml].present?
+    # Store raw content in the separate content table (if available)
+    if result[:raw_xml].present?
+      content = version.content || version.build_content
+      content.update!(raw_xml: result[:raw_xml])
+      build_document_tree(version, result[:raw_xml])
+    end
   rescue StandardError => e
     Rails.logger.error("[ParseLegislationDocumentJob] Failed for #{doc_ref}: #{e.message}")
     raise
   end
 
   private
+
+  def compute_metadata_hash(doc_ref)
+    Digest::SHA256.hexdigest("#{doc_ref[:frbr_uri]}:#{doc_ref[:title]}:#{doc_ref[:date]}")
+  end
 
   def extract_year(date_string)
     return nil unless date_string
