@@ -11,7 +11,7 @@ class Ingestion::UkLegislationServiceTest < ActiveSupport::TestCase
     stub_request(:get, /legislation\.gov\.uk\/update\/data\.feed/)
       .to_return(status: 200, body: @publication_log, headers: { "Content-Type" => "application/xml" })
 
-    results = @service.fetch_document_list(since: 90.days.ago)
+    results = @service.fetch_document_list(since: Date.new(2026, 1, 1))
     assert_equal 2, results.length
 
     assert_equal "/ukpga/2026/5", results[0][:frbr_uri]
