@@ -98,13 +98,7 @@
   <div class="card">
     <h2>Full Text</h2>
     <div class="legislation-content">
-      <%= sanitize extract_body_content(@raw_content), tags: %w[
-        table thead tbody tr th td caption colgroup col
-        p div span br hr h1 h2 h3 h4 h5 h6
-        ul ol li dl dt dd
-        a img em strong b i u sub sup
-        blockquote pre code
-      ], attributes: %w[href src alt title class style width border cellspacing cellpadding colspan rowspan valign align] %>
+      <%= extract_body_content(@raw_content) %>
     </div>
   </div>
 <% end %>

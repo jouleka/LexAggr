@@ -44,6 +44,6 @@ class IngestionLogTest < ActiveSupport::TestCase
     mid_log = IngestionLog.create!(jurisdiction: @jurisdiction, source_name: "cellar_sparql", status: "completed", created_at: 1.hour.ago)
 
     results = IngestionLog.recent.to_a
-    assert_equal [new_log, mid_log, old_log], results
+    assert_equal [ new_log, mid_log, old_log ], results
   end
 end

@@ -13,7 +13,7 @@ module Ingestion
     def http_client(base_url: nil)
       Faraday.new(url: base_url) do |f|
         f.request :retry, max: 3, interval: 0.5, backoff_factor: 2,
-                  retry_statuses: [429, 500, 502, 503, 504]
+                  retry_statuses: [ 429, 500, 502, 503, 504 ]
         f.headers["User-Agent"] = "LexAggr/1.0 (legislation-aggregator)"
         f.adapter Faraday.default_adapter
       end

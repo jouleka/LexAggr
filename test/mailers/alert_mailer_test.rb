@@ -12,7 +12,7 @@ class AlertMailerTest < ActionMailer::TestCase
 
   test "daily_digest sends email" do
     email = AlertMailer.daily_digest(@user, @changes)
-    assert_equal ["mailer@example.com"], email.to
+    assert_equal [ "mailer@example.com" ], email.to
     assert_includes email.subject, "2 legislation updates"
   end
 

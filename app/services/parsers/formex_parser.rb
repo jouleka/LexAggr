@@ -39,7 +39,7 @@ module Parsers
     def parse_division(node, path)
       div_type = DIVISION_TYPE_MAP.fetch(node["TYPE"], "division")
       eid = node["ID"]
-      current_path = path + [eid || div_type]
+      current_path = path + [ eid || div_type ]
       {
         element_type: div_type,
         eid: eid,
@@ -53,10 +53,10 @@ module Parsers
 
     def parse_article(node, path)
       eid = node["ID"]
-      current_path = path + [eid || "article"]
+      current_path = path + [ eid || "article" ]
       children = node.xpath("PARAG").map do |parag|
         para_id = parag["ID"]
-        para_path = current_path + [para_id || "para"]
+        para_path = current_path + [ para_id || "para" ]
         {
           element_type: "paragraph",
           eid: para_id,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_14_100330) do
+ActiveRecord::Schema[8.0].define(version: 2026_08_18_211500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_catalog.plpgsql"
@@ -138,8 +138,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_100330) do
     t.string "alert_frequency", default: "daily", null: false
     t.boolean "alert_email_enabled", default: true, null: false
     t.datetime "last_digest_sent_at"
-    t.string "api_token"
-    t.index ["api_token"], name: "index_users_on_api_token", unique: true
+    t.string "api_token_digest"
+    t.index ["api_token_digest"], name: "index_users_on_api_token_digest", unique: true
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

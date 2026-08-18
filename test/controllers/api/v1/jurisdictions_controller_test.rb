@@ -3,7 +3,7 @@ require "test_helper"
 class Api::V1::JurisdictionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = User.create!(email_address: "apijur@example.com", password: "password123", password_confirmation: "password123")
-    @headers = { "Authorization" => "Bearer #{@user.api_token}" }
+    @headers = { "Authorization" => "Bearer #{@user.rotate_api_token!}" }
     @jurisdiction = Jurisdiction.create!(code: "eu", name: "European Union", jurisdiction_type: "supranational")
   end
 

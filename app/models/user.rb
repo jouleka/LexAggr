@@ -10,11 +10,16 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
-  before_create :generate_api_token
+  def self.authenticate_api_token(token)
+    return unless token&.match?(/\A[0-9a-f]{64}\z/)
 
-  private
+    find_by(api_token_digest: Digest::SHA256.hexdigest(token))
+  end
 
-  def generate_api_token
-    self.api_token = SecureRandom.hex(32)
+  # Return the raw token exactly once and store only its digest.
+  def rotate_api_token!
+    token = SecureRandom.hex(32)
+    update!(api_token_digest: Digest::SHA256.hexdigest(token))
+    token
   end
 end

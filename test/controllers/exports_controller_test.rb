@@ -41,6 +41,15 @@ class ExportsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "GDPR"
   end
 
+  test "CSV export neutralizes spreadsheet formulas from imported data" do
+    @legislation.update!(title: '=HYPERLINK("https://example.test", "click")')
+
+    get export_legislation_csv_path(@legislation)
+
+    title_row = CSV.parse(response.body).find { |row| row.first == "Title" }
+    assert_equal '\'=HYPERLINK("https://example.test", "click")', title_row.second
+  end
+
   test "exports do not require authentication" do
     get export_legislation_csv_path(@legislation)
     assert_response :success

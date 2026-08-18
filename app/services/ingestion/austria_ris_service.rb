@@ -80,7 +80,7 @@ module Ingestion
     def ris_client
       @ris_client ||= Faraday.new(url: BASE_URL) do |f|
         f.request :retry, max: 3, interval: 0.5, backoff_factor: 2,
-                  retry_statuses: [429, 500, 502, 503, 504]
+                  retry_statuses: [ 429, 500, 502, 503, 504 ]
         f.headers["User-Agent"] = "LexAggr/1.0 (legislation-aggregator)"
         f.headers["Accept"] = "application/xml"
         f.adapter Faraday.default_adapter

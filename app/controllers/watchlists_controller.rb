@@ -1,8 +1,8 @@
 class WatchlistsController < ApplicationController
-  before_action :set_watchlist, only: [:show, :destroy]
+  before_action :set_watchlist, only: [ :show, :destroy ]
 
   def index
-    @watchlists = Current.user.watchlists.includes(watchlist_items: [:legislation, :jurisdiction])
+    @watchlists = Current.user.watchlists.includes(watchlist_items: [ :legislation, :jurisdiction ])
   end
 
   def show

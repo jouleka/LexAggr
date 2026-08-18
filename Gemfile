@@ -51,6 +51,7 @@ gem "pg_search"
 
 # CSV/PDF export
 gem "csv"
+gem "matrix"
 gem "prawn"
 gem "prawn-table"
 
@@ -58,6 +59,9 @@ gem "prawn-table"
 gem "mission_control-jobs"
 
 group :development, :test do
+  # Audit locked gems against the Ruby Advisory Database.
+  gem "bundler-audit", "~> 0.9.3", require: false
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 

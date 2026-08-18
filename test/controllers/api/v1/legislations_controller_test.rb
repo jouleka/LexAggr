@@ -3,7 +3,7 @@ require "test_helper"
 class Api::V1::LegislationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = User.create!(email_address: "apileg@example.com", password: "password123", password_confirmation: "password123")
-    @headers = { "Authorization" => "Bearer #{@user.api_token}" }
+    @headers = { "Authorization" => "Bearer #{@user.rotate_api_token!}" }
     jurisdiction = Jurisdiction.create!(code: "eu", name: "European Union", jurisdiction_type: "supranational")
     @legislation = Legislation.create!(
       jurisdiction: jurisdiction,
@@ -40,6 +40,15 @@ class Api::V1::LegislationsControllerTest < ActionDispatch::IntegrationTest
   test "index supports pagination" do
     get api_v1_legislations_url(page: 1, per_page: 1), headers: @headers, as: :json
     json = JSON.parse(response.body)
+    assert_equal 1, json["meta"]["per_page"]
+  end
+
+  test "index clamps invalid pagination values" do
+    get api_v1_legislations_url(page: -50, per_page: 0), headers: @headers, as: :json
+
+    assert_response :success
+    json = JSON.parse(response.body)
+    assert_equal 1, json["meta"]["page"]
     assert_equal 1, json["meta"]["per_page"]
   end
 

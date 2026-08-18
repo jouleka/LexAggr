@@ -8,7 +8,7 @@ class Ingestion::FinlexServiceTest < ActiveSupport::TestCase
   end
 
   test "fetch_document_list parses JSON list" do
-    year_2025_data = [{ "akn_uri" => "/akn/fi/act/statute/2025/500/fin@", "status" => "AMENDED" }].to_json
+    year_2025_data = [ { "akn_uri" => "/akn/fi/act/statute/2025/500/fin@", "status" => "AMENDED" } ].to_json
     year_2026_data = [
       { "akn_uri" => "/akn/fi/act/statute/2026/100/fin@", "status" => "NEW" },
       { "akn_uri" => "/akn/fi/act/statute/2026/101/fin@", "status" => "NEW" }

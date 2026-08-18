@@ -20,7 +20,7 @@ class ParseLegislationDocumentJobTest < ActiveSupport::TestCase
       content_hash: Digest::SHA256.hexdigest(@sample_xml)
     })
 
-    assert_difference ["Legislation.count", "LegislationVersion.count"], 1 do
+    assert_difference [ "Legislation.count", "LegislationVersion.count" ], 1 do
       ParseLegislationDocumentJob.perform_now("eu", @doc_ref.to_json)
     end
 

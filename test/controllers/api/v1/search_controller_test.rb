@@ -3,7 +3,7 @@ require "test_helper"
 class Api::V1::SearchControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = User.create!(email_address: "apisearch@example.com", password: "password123", password_confirmation: "password123")
-    @headers = { "Authorization" => "Bearer #{@user.api_token}" }
+    @headers = { "Authorization" => "Bearer #{@user.rotate_api_token!}" }
     jurisdiction = Jurisdiction.create!(code: "eu", name: "European Union", jurisdiction_type: "supranational")
     Legislation.create!(jurisdiction: jurisdiction, frbr_uri: "/test/search/1", title: "General Data Protection Regulation", legislation_type: "regulation", status: "in_force", year: 2016)
   end

@@ -26,7 +26,7 @@ module Parsers
     def parse_children(node, path)
       node.children.select(&:element?).filter_map do |child|
         next unless HIERARCHICAL.include?(child.name)
-        current_path = path + [child["eId"] || child.name]
+        current_path = path + [ child["eId"] || child.name ]
         {
           element_type: child.name,
           eid: child["eId"],
